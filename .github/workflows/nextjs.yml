@@ -59,7 +59,7 @@ jobs:
         with:
           node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-          cache-dependency-path: ${{ steps.detect-package-manager.outputs.dependency-path }}.yaml
+          cache-dependency-path: ${{ steps.detect-package-manager.outputs.cache-dependency-path }}.yaml
       - name: Setup Pages
         uses: actions/configure-pages@v3
         with:
