@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+
 import { NextUI } from "@/config/providers/NextUIProviderApp";
+import { NavBar } from "@/components/NavBar/NavBar";
+
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,9 +19,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body className={inter.className}>
-        <NextUI>{children}</NextUI>
+        <NextUI>
+          <div className="background-gradient-radius">
+            <NavBar />
+            {children}
+          </div>
+        </NextUI>
       </body>
     </html>
   );
