@@ -13,7 +13,7 @@ export function NavBarItemList() {
   return (
     <>
       {navigationLinks.map((link, _) => (
-        <NavbarItem key={link.title}>
+        <NavbarItem key={link.title} isActive={link.href === path}>
           <Link
             color={link.href === path ? "primary" : "foreground"}
             href={link.href}

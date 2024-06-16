@@ -41,7 +41,7 @@ export function CardTechnology({ technology }: { technology: IExpertise }) {
             ))}
           </div>
           <div className="flex justify-end">
-            <Button color={"secondary"} variant="flat" className="rounded-3xl">
+            <Button color={"secondary"} variant="solid" className="rounded-3xl">
               <Link className="text-sm text-inherit" href={projectsUrl}>
                 Projects
               </Link>
