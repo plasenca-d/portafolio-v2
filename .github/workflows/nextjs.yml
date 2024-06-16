@@ -48,6 +48,7 @@ jobs:
             echo "manager=pnpm" >> $GITHUB_OUTPUT
             echo "command=install" >> $GITHUB_OUTPUT
             echo "runner=pnpm dlx" >> $GITHUB_OUTPUT
+            echo "cache-dependency-path=pnpm-lock" >> $GITHUB_OUTPUT
             exit 0
           else
             echo "Unable to determine package manager"
@@ -58,7 +59,7 @@ jobs:
         with:
           node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-          cache-dependency-path: ${{ steps.detect-package-manager.outputs.manager }}.lock
+          cache-dependency-path: ${{ steps.detect-package-manager.outputs.dependency-path }}.yaml
       - name: Setup Pages
         uses: actions/configure-pages@v3
         with:
