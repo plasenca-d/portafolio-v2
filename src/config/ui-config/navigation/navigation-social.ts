@@ -11,7 +11,7 @@ export const navigationSocialLinks = [
   },
   {
     title: "Github",
-    href: "https://github.com/plasenca",
+    href: "https://github.com/plasenca-d",
     icon: IoLogoGithub,
   },
   {
