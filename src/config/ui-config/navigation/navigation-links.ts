@@ -27,7 +27,7 @@ export const navigationLinks: NavigationLink[] = [
   },
   {
     title: "Blog",
-    href: "/blog",
+    href: "https://medium.com/@franzua.15pc",
     urlname: "/blog",
   },
 ];
