@@ -1,14 +1,17 @@
 import { Hero } from "@/components/Hero/Hero";
+import { Projects } from "@/components/Technologies/projects";
 import { Technologies } from "@/components/Technologies/Technologies";
-import Image from "next/image";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <main>
-        <Technologies />
-      </main>
+      <div className="container mx-auto">
+        <main>
+          <Technologies />
+        </main>
+        <Projects />
+      </div>
     </>
   );
 }

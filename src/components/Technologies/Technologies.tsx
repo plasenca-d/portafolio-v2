@@ -39,8 +39,8 @@ const listExpertise: IExpertise[] = [
 
 export function Technologies() {
   return (
-    <section className="container mx-auto px-10 flex flex-col items-center pb-10">
-      <h2 id="expertise" className="font-bold text-5xl pb-5">
+    <section className="px-10 flex flex-col items-center pb-10">
+      <h2 id="expertise" className="font-bold text-3xl md:text-5xl pb-5">
         My Expertise
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
