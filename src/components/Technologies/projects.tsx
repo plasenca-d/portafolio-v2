@@ -55,6 +55,17 @@ const projects: Project[] = [
     liveUrl: "https://store.grupocoinp.com",
     technologies: ["Odoo", "Python", " Javascript", "CSS", "HTML"],
   },
+  {
+    title: "Lavid Virtual App",
+    description: "A freelance website for a electronic commerce website",
+    imagesUrl: [
+      "/projects/lavid_1.png",
+      "/projects/lavid_2.png",
+      "/projects/lavid_3.png",
+    ],
+    liveUrl: "https://academy.lavid.io/",
+    technologies: ["Nextjs", "Nestjs", "Typescript"],
+  },
 ];
 
 export const Projects = () => {
@@ -96,7 +107,7 @@ export const Projects = () => {
                         <Image
                           src={img}
                           alt={project.title}
-                          width={300}
+                          width={400}
                           height={200}
                           className="w-full object-cover rounded-sm h-[300px] cursor-pointer"
                           onClick={() => {
