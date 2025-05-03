@@ -4,7 +4,7 @@ import { AiOutlineDownload } from "react-icons/ai";
 import { navigationSocialLinks } from "@/config";
 
 const CV_URL =
-  "https://drive.google.com/file/d/1rcRGmlSABk2yvCuphu89V40s3-LCQzpv/view?usp=sharing";
+  "https://drive.google.com/file/d/1P3C4HRDBX7UMZzONgTRqwS0ZfUTbhd6E/view?usp=sharing";
 
 export function NavBarActions() {
   return (
