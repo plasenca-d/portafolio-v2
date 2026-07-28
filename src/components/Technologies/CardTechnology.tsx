@@ -1,12 +1,12 @@
+import NextLink from "next/link";
 import { IExpertise } from "@/interfaces";
 import {
   Button,
   Card,
-  CardBody,
+  CardContent,
   CardFooter,
   CardHeader,
-  Link,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import clsx from "clsx";
 import { IconType } from "react-icons";
 
@@ -30,9 +30,9 @@ export function CardTechnology({ technology }: { technology: IExpertise }) {
       <CardHeader>
         <p className="font-semibold text-xl">{name}</p>
       </CardHeader>
-      <CardBody>
+      <CardContent>
         <p className="text-base">{description}</p>
-      </CardBody>
+      </CardContent>
       <CardFooter className="bg-opacity-20 z-10 bottom-0">
         <div className="container grid grid-cols-2">
           <div className="flex items-center">
@@ -41,11 +41,11 @@ export function CardTechnology({ technology }: { technology: IExpertise }) {
             ))}
           </div>
           <div className="flex justify-end">
-            <Button color={"secondary"} variant="solid" className="rounded-3xl">
-              <Link className="text-sm text-inherit" href={projectsUrl}>
+            <NextLink href={projectsUrl} className="no-underline">
+              <Button  className="rounded-3xl">
                 Projects
-              </Link>
-            </Button>
+              </Button>
+            </NextLink>
           </div>
         </div>
       </CardFooter>

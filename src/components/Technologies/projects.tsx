@@ -1,25 +1,21 @@
 "use client";
 
+import Image from "next/image";
+import NextLink from "next/link";
 import {
   Card,
   CardHeader,
-  CardBody,
+  CardContent,
   CardFooter,
-  Image,
   Button,
   Chip,
-  Modal,
-  ModalContent,
-  useDisclosure,
-} from "@nextui-org/react";
-import { Link } from "@nextui-org/react";
+} from "@heroui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 import clsx from "clsx";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { useState } from "react";
 
 interface Project {
   title: string;
@@ -69,99 +65,78 @@ const projects: Project[] = [
 ];
 
 export const Projects = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedImage, setSelectedImage] = useState("");
-
   return (
-    <>
-      <div className="py-8">
-        <h2 className="text-3xl md:text-5xl font-bold text-center mb-6">
-          Projects I have worked on
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <Card
-              key={index}
-              className={clsx(
-                "border-transparent backdrop-blur-md bg-opacity-20 shadow-lg bg-white",
-                "hover:translate-x-1 hover:translate-y-1 hover:shadow-2xl"
-              )}
-            >
-              <CardHeader>
-                <Swiper
-                  modules={[Autoplay, EffectFade, Navigation, Pagination]}
-                  autoplay={{
-                    delay: 2500,
-                    disableOnInteraction: false,
-                  }}
-                  navigation
-                  pagination={{ clickable: true }}
-                  spaceBetween={50}
-                  slidesPerView={1}
-                  onSlideChange={() => console.log("slide change")}
-                  onSwiper={(swiper) => console.log(swiper)}
+    <div className="py-8">
+      <h2 className="text-3xl md:text-5xl font-bold text-center mb-6">
+        Projects I have worked on
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map((project, index) => (
+          <Card
+            key={index}
+            className={clsx(
+              "border-transparent backdrop-blur-md bg-opacity-20 shadow-lg bg-white",
+              "hover:translate-x-1 hover:translate-y-1 hover:shadow-2xl"
+            )}
+          >
+            <CardHeader>
+              <Swiper
+                modules={[Autoplay, EffectFade, Navigation, Pagination]}
+                autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: false,
+                }}
+                navigation
+                pagination={{ clickable: true }}
+                spaceBetween={50}
+                slidesPerView={1}
+              >
+                {project.imagesUrl.map((img, idx) => (
+                  <SwiperSlide key={idx}>
+                    <NextLink
+                      href={project.liveUrl || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex justify-center place-items-center no-underline"
+                    >
+                      <Image
+                        src={img}
+                        alt={project.title}
+                        width={400}
+                        height={200}
+                        className="w-full object-cover rounded-sm h-[300px]"
+                      />
+                    </NextLink>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </CardHeader>
+            <CardContent>
+              <h2 className="text-xl font-bold">{project.title}</h2>
+              <p className="text-default-500">{project.description}</p>
+              <div className="flex flex-wrap gap-2 mt-3">
+                {project.technologies.map((tech, idx) => (
+                  <Chip key={idx} size="sm" variant="soft">
+                    {tech}
+                  </Chip>
+                ))}
+              </div>
+            </CardContent>
+            <CardFooter>
+              {project.liveUrl && (
+                <NextLink
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="no-underline"
                 >
-                  {project.imagesUrl.map((img, idx) => (
-                    <SwiperSlide key={idx}>
-                      <div className="flex justify-center place-items-center">
-                        <Image
-                          src={img}
-                          alt={project.title}
-                          width={400}
-                          height={200}
-                          className="w-full object-cover rounded-sm h-[300px] cursor-pointer"
-                          onClick={() => {
-                            setSelectedImage(img);
-                            onOpen();
-                          }}
-                        />
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </CardHeader>
-              <CardBody>
-                <h2 className="text-xl font-bold">{project.title}</h2>
-                <p className="text-default-500">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mt-3">
-                  {project.technologies.map((tech, idx) => (
-                    <Chip key={idx} size="sm" variant="flat" color="success">
-                      {tech}
-                    </Chip>
-                  ))}
-                </div>
-              </CardBody>
-              <CardFooter>
-                {project.liveUrl && (
-                  <Button
-                    as={Link}
-                    href={project.liveUrl}
-                    target="_blank"
-                    color="primary"
-                    variant="flat"
-                  >
-                    View Live Project
-                  </Button>
-                )}
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
+                  <Button size="sm">View Live Project</Button>
+                </NextLink>
+              )}
+            </CardFooter>
+          </Card>
+        ))}
       </div>
-      <Modal
-        size="xl"
-        isOpen={isOpen}
-        onClose={onClose}
-        scrollBehavior="inside"
-      >
-        <ModalContent>
-          <Image
-            src={selectedImage}
-            alt="Project preview"
-            className="w-full h-full object-contain"
-          />
-        </ModalContent>
-      </Modal>
-    </>
+    </div>
   );
 };

@@ -1,84 +1,65 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 .background-gradient-radius {
   background: radial-gradient(
-    70% 70% at 30% 60%,
-    rgba(155, 69, 235, 0.349) 0%,
-    rgba(0, 0, 0, 0) 60%
+    circle at 50% 50%,
+    rgba(131, 88, 225, 0.5) 0%,
+    rgba(69, 43, 106, 0.5) 100%
   );
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  width: 100vw;
+  filter: blur(90px);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .embla {
-  max-width: 48rem;
-  margin: auto;
-  --slide-height: 19rem;
-  --slide-spacing: 1rem;
-  --slide-size: 70%;
+  overflow: hidden;
 }
 .embla__viewport {
   overflow: hidden;
 }
 .embla__container {
   display: flex;
-  touch-action: pan-y pinch-zoom;
-  margin-left: calc(var(--slide-spacing) * -1);
 }
 .embla__slide {
-  transform: translate3d(0, 0, 0);
-  flex: 0 0 var(--slide-size);
+  flex: 0 0 100%;
   min-width: 0;
-  padding-left: var(--slide-spacing);
 }
 .embla__slide__number {
-  box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
+  box-shadow: inset 0 0 0 0.2rem var(--detail-high-contrast);
   border-radius: 1.8rem;
   font-size: 4rem;
   font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: var(--slide-height);
-  user-select: none;
+  min-height: 20rem;
 }
 .embla__controls {
   display: grid;
-  grid-template-columns: auto 1fr;
-  justify-content: space-between;
-  gap: 1.2rem;
-  margin-top: 1.8rem;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 .embla__buttons {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   gap: 0.6rem;
-  align-items: center;
 }
 .embla__button {
-  -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: transparent;
-  touch-action: manipulation;
-  display: inline-flex;
-  text-decoration: none;
-  cursor: pointer;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
-  width: 3.6rem;
-  height: 3.6rem;
-  z-index: 1;
+  background: var(--detail-high-contrast);
+  color: var(--detail-low-contrast);
   border-radius: 50%;
-  color: var(--text-body);
+  height: 3rem;
+  width: 3rem;
+  cursor: pointer;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: opacity 0.2s ease;
 }
 .embla__button:disabled {
   color: var(--detail-high-contrast);
@@ -88,73 +69,48 @@
   height: 35%;
 }
 .embla__play {
-  -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: transparent;
-  touch-action: manipulation;
-  display: inline-flex;
-  text-decoration: none;
+  border-radius: 50%;
+  background: var(--background-high-contrast);
+  color: var(--detail-low-contrast);
+  height: 3rem;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
   cursor: pointer;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
-  border-radius: 1.8rem;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  justify-self: flex-end;
-  color: var(--text-body);
-  font-weight: 700;
-  font-size: 1.4rem;
-  padding: 0 2.4rem;
-  min-width: 8.4rem;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
 }
 .embla__progress {
-  border-radius: 1.8rem;
-  box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
-  background-color: var(--background-site);
-  position: relative;
-  height: 0.6rem;
-  justify-self: flex-end;
-  align-self: center;
-  width: 13rem;
-  max-width: 90%;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 .embla__progress__bar {
-  background-color: var(--text-body);
-  position: absolute;
-  width: 100%;
-  top: 0;
-  bottom: 0;
-  left: -100%;
+  background: var(--detail-high-contrast);
+  height: 0.2rem;
+  border-radius: 0.1rem;
+  flex: 1;
 }
 .embla__controls {
   grid-template-columns: auto 1fr auto;
 }
-.embla__progress {
-  justify-self: center;
-  transition: opacity 0.3s ease-in-out;
-  width: 8rem;
-}
 .embla__progress--hidden {
   opacity: 0;
-}
-.embla__progress__bar {
-  animation-name: autoplay-progress;
-  animation-timing-function: linear;
-  animation-iteration-count: 1;
 }
 .embla__progress--hidden .embla__progress__bar {
   animation-play-state: paused;
 }
 @keyframes autoplay-progress {
-  0% {
-    transform: translate3d(0, 0, 0);
+  from {
+    width: 0;
   }
-  100% {
-    transform: translate3d(100%, 0, 0);
+  to {
+    width: 100%;
   }
 }

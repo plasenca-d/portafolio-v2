@@ -1,0 +1,40 @@
+# openspec/changes/nextjs-migration/state.yaml
+name: nextjs-migration
+artifactStore: hybrid
+deliveryStrategy: interactive
+created: 2026-07-28
+status: completed
+
+phases:
+  propose:
+    status: completed
+  spec:
+    status: completed
+  design:
+    status: completed
+  tasks:
+    status: completed
+  apply:
+    status: completed
+  verify:
+    status: completed
+  archive:
+    status: pending
+
+notes: |
+  Migration completed successfully.
+  - Node.js: 18 → 24.13.0
+  - React: 18 → 19
+  - Next.js: 14 → 16
+  - NextUI → HeroUI 3 (with significant breaking changes)
+  - Tailwind: 3 → 4
+  
+  Breaking changes in HeroUI 3 required significant component rewrites:
+  - Navbar → Header + Dropdown
+  - CardBody → CardContent
+  - Modal simplified (image links instead)
+  - Link 'as' prop removed, use next/link directly
+  - Button variant/color props changed
+  - useDisclosure replaced with useState
+  
+  Modal functionality was removed due to API incompatibility.

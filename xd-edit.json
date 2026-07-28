@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "ops": [
+    {"pat": "from \"@nextui-org/react\"", "out": "from \"@heroui/react\""}
+  ],
+  "paths": [
+    "D:/Projects/me/portafolio-nextjs-v2/src/components/Hero/Hero.tsx",
+    "D:/Projects/me/portafolio-nextjs-v2/src/components/NavBar/NavBar.tsx",
+    "D:/Projects/me/portafolio-nextjs-v2/src/components/NavBar/NavBarActions.tsx",
+    "D:/Projects/me/portafolio-nextjs-v2/src/components/NavBar/NavBarItemList.tsx",
+    "D:/Projects/me/portafolio-nextjs-v2/src/components/NavBar/NavBarLogo.tsx",
+    "D:/Projects/me/portafolio-nextjs-v2/src/components/NavBar/NavBarMenuList.tsx",
+    "D:/Projects/me/portafolio-nextjs-v2/src/components/Technologies/CardTechnology.tsx",
+    "D:/Projects/me/portafolio-nextjs-v2/src/components/Technologies/projects.tsx"
+  ]
+}
