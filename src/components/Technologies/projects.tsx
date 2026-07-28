@@ -102,9 +102,7 @@ export const Projects = () => {
                       <Image
                         src={img}
                         alt={project.title}
-                        width={400}
-                        height={200}
-                        className="w-full object-cover rounded-sm h-[300px]"
+                        width={400} height={200} className="w-full object-cover rounded-sm" style={{ width: "auto", height: "auto" }}
                       />
                     </NextLink>
                   </SwiperSlide>

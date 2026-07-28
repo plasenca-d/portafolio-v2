@@ -32,22 +32,23 @@ export function NavBar() {
       <div className="flex items-center justify-between w-full px-4">
         {/* Logo */}
         <div className="flex items-center">
-          <Image
-            alt="Franzua Plasencia"
-            src="/static/logo.png"
-            width={50}
-            height={50}
-            priority
-            className="rounded-full"
-          />
-          <NextLink
-            href="/"
-            className={clsx(
-              "ml-2 font-bold text-inherit no-underline",
-              pathname === "/" ? "animate__animated animate__fadeIn" : ""
-            )}
-          >
-            Franzua Plasencia
+          <NextLink href="/" className="flex items-center no-underline">
+            <Image
+              alt="Franzua Plasencia"
+              src="/static/logo.png"
+              width={50}
+              height={50}
+              priority
+              className="rounded-full"
+            />
+            <span
+              className={clsx(
+                "ml-2 font-bold text-foreground",
+                pathname === "/" ? "animate__animated animate__fadeIn" : ""
+              )}
+            >
+              Franzua Plasencia
+            </span>
           </NextLink>
         </div>
 
@@ -57,7 +58,6 @@ export function NavBar() {
             <NextLink
               key={link.title}
               href={link.href}
-              aria-current={pathname === link.href ? "page" : undefined}
               className={clsx(
                 "no-underline",
                 pathname === link.href
@@ -99,9 +99,9 @@ export function NavBar() {
         {/* Mobile Menu */}
         <Dropdown>
           <DropdownTrigger>
-            <Button className="sm:hidden">
+            <button className="sm:flex sm:hidden p-2 bg-transparent border-none cursor-pointer">
               <svg
-                className="w-6 h-6"
+                className="w-6 h-6 text-foreground"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -113,14 +113,11 @@ export function NavBar() {
                   d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
-            </Button>
+            </button>
           </DropdownTrigger>
           <DropdownMenu aria-label="Navigation menu">
             {navigationLinks.map((link) => (
-              <DropdownItem
-                key={link.title}
-                className={pathname === link.href ? "text-primary" : ""}
-              >
+              <DropdownItem key={link.title}>
                 <NextLink
                   href={link.href}
                   className={clsx(
