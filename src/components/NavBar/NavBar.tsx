@@ -4,7 +4,6 @@ import Image from "next/image";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  Header,
   Button,
   Dropdown,
   DropdownTrigger,
@@ -22,28 +21,27 @@ export function NavBar() {
   const pathname = usePathname();
 
   return (
-    <Header
+    <nav
       className={clsx(
-        "fixed rounded-3xl mt-4 lg:ml-4 lg:mr-4",
-        "border-transparent bg-white/70 backdrop-blur-md shadow-lg",
-        "dark:bg-black/70"
+        "fixed top-4 left-4 right-4 lg:left-4 lg:right-4 z-50",
+        "rounded-3xl border border-white/20 bg-black/60 backdrop-blur-md shadow-lg"
       )}
     >
-      <div className="flex items-center justify-between w-full px-4">
+      <div className="flex items-center justify-between w-full px-6 py-3">
         {/* Logo */}
         <div className="flex items-center">
           <NextLink href="/" className="flex items-center no-underline">
             <Image
               alt="Franzua Plasencia"
               src="/static/logo.png"
-              width={50}
-              height={50}
+              width={40}
+              height={40}
               priority
               className="rounded-full"
             />
             <span
               className={clsx(
-                "ml-2 font-bold text-foreground",
+                "ml-2 font-bold text-white",
                 pathname === "/" ? "animate__animated animate__fadeIn" : ""
               )}
             >
@@ -53,16 +51,16 @@ export function NavBar() {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden sm:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-6">
           {navigationLinks.map((link) => (
             <NextLink
               key={link.title}
               href={link.href}
               className={clsx(
-                "no-underline",
+                "no-underline text-white/80 hover:text-white",
                 pathname === link.href
-                  ? "text-primary font-medium"
-                  : "text-foreground hover:text-primary"
+                  ? "text-white font-medium"
+                  : ""
               )}
             >
               {link.title}
@@ -71,16 +69,16 @@ export function NavBar() {
         </div>
 
         {/* Desktop Actions */}
-        <div className="hidden sm:flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-3">
           {navigationSocialLinks.map((link) => (
             <NextLink
               key={link.title}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground hover:text-primary no-underline"
+              className="text-white/80 hover:text-white no-underline"
             >
-              <link.icon cursor={"pointer"} />
+              <link.icon cursor={"pointer"} size={20} />
             </NextLink>
           ))}
           <NextLink
@@ -89,18 +87,18 @@ export function NavBar() {
             rel="noopener noreferrer"
             className="no-underline"
           >
-            <Button size="sm">
+            <Button size="sm" className="bg-white text-black">
               <span className="hidden lg:inline">Download CV</span>
               <AiOutlineDownload className="lg:hidden" />
             </Button>
           </NextLink>
         </div>
 
-        {/* Mobile Menu - DropdownTrigger is already a button */}
-        <Dropdown>
+        {/* Mobile Menu - DropdownTrigger already renders a button */}
+        <Dropdown className="md:hidden">
           <DropdownTrigger>
             <svg
-              className="w-8 h-8 sm:hidden"
+              className="w-6 h-6 text-white md:hidden cursor-pointer"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -119,10 +117,8 @@ export function NavBar() {
                 <NextLink
                   href={link.href}
                   className={clsx(
-                    "w-full no-underline",
-                    pathname === link.href
-                      ? "text-primary font-medium"
-                      : "text-foreground"
+                    "w-full no-underline text-white",
+                    pathname === link.href ? "text-primary font-medium" : ""
                   )}
                 >
                   {link.title}
@@ -134,7 +130,7 @@ export function NavBar() {
                 href={CV_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-foreground no-underline"
+                className="text-white no-underline"
               >
                 Download CV
               </NextLink>
@@ -142,6 +138,6 @@ export function NavBar() {
           </DropdownMenu>
         </Dropdown>
       </div>
-    </Header>
+    </nav>
   );
 }

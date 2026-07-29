@@ -23,31 +23,28 @@ export function CardTechnology({ technology }: { technology: IExpertise }) {
   return (
     <Card
       className={clsx(
-        "border-transparent backdrop-blur-md bg-opacity-20 shadow-lg bg-white",
-        "hover:translate-x-1 hover:translate-y-1 hover:shadow-2xl"
+        "border border-white/20 bg-white/80 backdrop-blur-md shadow-lg",
+        "hover:shadow-xl transition-shadow"
       )}
+      style={{ backgroundColor: "rgba(255, 255, 255, 0.8)" }}
     >
       <CardHeader>
-        <p className="font-semibold text-xl">{name}</p>
+        <p className="font-semibold text-xl text-black">{name}</p>
       </CardHeader>
       <CardContent>
-        <p className="text-base">{description}</p>
+        <p className="text-base text-black/70">{description}</p>
       </CardContent>
-      <CardFooter className="bg-opacity-20 z-10 bottom-0">
-        <div className="container grid grid-cols-2">
-          <div className="flex items-center">
-            {tools.map((Tool: IconType) => (
-              <Tool key={Tool.name} className="text-2xl mr-2" />
-            ))}
-          </div>
-          <div className="flex justify-end">
-            <NextLink href={projectsUrl} className="no-underline">
-              <Button  className="rounded-3xl">
-                Projects
-              </Button>
-            </NextLink>
-          </div>
+      <CardFooter className="flex-wrap">
+        <div className="flex items-center gap-2 mb-3">
+          {tools.map((Tool: IconType) => (
+            <Tool key={Tool.name} className="text-2xl text-gray-700" />
+          ))}
         </div>
+        <NextLink href={projectsUrl} className="no-underline">
+          <Button size="sm" className="bg-primary text-white">
+            Projects
+          </Button>
+        </NextLink>
       </CardFooter>
     </Card>
   );

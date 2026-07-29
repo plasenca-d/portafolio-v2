@@ -11,7 +11,7 @@ import {
   Chip,
 } from "@heroui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import clsx from "clsx";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -49,7 +49,7 @@ const projects: Project[] = [
     description: "A freelance website for a electronic commerce website",
     imagesUrl: ["/projects/coinp_1.png", "/projects/coinp_2.png"],
     liveUrl: "https://store.grupocoinp.com",
-    technologies: ["Odoo", "Python", " Javascript", "CSS", "HTML"],
+    technologies: ["Odoo", "Python", "Javascript", "CSS", "HTML"],
   },
   {
     title: "Lavid Virtual App",
@@ -66,8 +66,8 @@ const projects: Project[] = [
 
 export const Projects = () => {
   return (
-    <div className="py-8">
-      <h2 className="text-3xl md:text-5xl font-bold text-center mb-6">
+    <div className="py-8 px-4">
+      <h2 className="text-3xl md:text-5xl font-bold text-center mb-6 text-black dark:text-white">
         Projects I have worked on
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -75,21 +75,23 @@ export const Projects = () => {
           <Card
             key={index}
             className={clsx(
-              "border-transparent backdrop-blur-md bg-opacity-20 shadow-lg bg-white",
-              "hover:translate-x-1 hover:translate-y-1 hover:shadow-2xl"
+              "border border-white/20 bg-white/80 backdrop-blur-md shadow-lg",
+              "hover:shadow-xl transition-shadow overflow-hidden"
             )}
+            style={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}
           >
-            <CardHeader>
+            <CardHeader className="p-0">
               <Swiper
-                modules={[Autoplay, EffectFade, Navigation, Pagination]}
+                modules={[Autoplay, Navigation, Pagination]}
                 autoplay={{
                   delay: 2500,
                   disableOnInteraction: false,
                 }}
                 navigation
                 pagination={{ clickable: true }}
-                spaceBetween={50}
+                spaceBetween={0}
                 slidesPerView={1}
+                className="w-full h-48"
               >
                 {project.imagesUrl.map((img, idx) => (
                   <SwiperSlide key={idx}>
@@ -97,38 +99,43 @@ export const Projects = () => {
                       href={project.liveUrl || "#"}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex justify-center place-items-center no-underline"
+                      className="flex items-center justify-center w-full h-full no-underline"
                     >
                       <Image
                         src={img}
                         alt={project.title}
-                        width={400} height={200} className="w-full object-cover rounded-sm" style={{ width: "auto", height: "auto" }}
+                        width={400}
+                        height={200}
+                        className="w-full h-full object-cover"
+                        style={{ maxWidth: "100%", height: "200px", objectFit: "cover" }}
                       />
                     </NextLink>
                   </SwiperSlide>
                 ))}
               </Swiper>
             </CardHeader>
-            <CardContent>
-              <h2 className="text-xl font-bold">{project.title}</h2>
-              <p className="text-default-500">{project.description}</p>
-              <div className="flex flex-wrap gap-2 mt-3">
+            <CardContent className="pb-2">
+              <h2 className="text-xl font-bold text-black">{project.title}</h2>
+              <p className="text-default-600 text-sm">{project.description}</p>
+            </CardContent>
+            <CardFooter className="flex-wrap gap-2 pt-0">
+              <div className="flex flex-wrap gap-1">
                 {project.technologies.map((tech, idx) => (
-                  <Chip key={idx} size="sm" variant="soft">
+                  <Chip key={idx} size="sm" variant="flat" className="bg-gray-100 text-gray-700">
                     {tech}
                   </Chip>
                 ))}
               </div>
-            </CardContent>
-            <CardFooter>
               {project.liveUrl && (
                 <NextLink
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="no-underline"
+                  className="no-underline w-full mt-2"
                 >
-                  <Button size="sm">View Live Project</Button>
+                  <Button size="sm" className="w-full bg-primary text-white">
+                    View Live Project
+                  </Button>
                 </NextLink>
               )}
             </CardFooter>
