@@ -22,9 +22,12 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={inter.className}>
         <NextUI>
-          <div className="background-gradient-radius">
+          <div className="relative min-h-screen">
+            <div className="background-gradient-radius -z-10" />
             <NavBar />
+            <main className="z-10">
             {children}
+            </main>
           </div>
         </NextUI>
       </body>
