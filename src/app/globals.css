@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@plugin "./hero.ts";
+
+@source "../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
+
 .background-gradient-radius {
   background: radial-gradient(
     circle at 50% 50%,
@@ -114,3 +118,4 @@
     width: 100%;
   }
 }
+@custom-variant dark (&:is(.dark *));
