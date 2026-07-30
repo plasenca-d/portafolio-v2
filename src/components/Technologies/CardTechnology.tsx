@@ -1,51 +1,26 @@
 import NextLink from "next/link";
 import { IExpertise } from "@/interfaces";
-import {
-  Button,
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@heroui/react";
-import clsx from "clsx";
 import { IconType } from "react-icons";
-
-export interface Technology {
-  name: string;
-  description: string;
-  projectsUrl: string;
-  tools: IconType[];
-}
 
 export function CardTechnology({ technology }: { technology: IExpertise }) {
   const { name, description, projectsUrl, tools } = technology;
 
   return (
-    <Card
-      className={clsx(
-        "border border-white/20 bg-white/80 backdrop-blur-md shadow-lg",
-        "hover:shadow-xl transition-shadow"
-      )}
-      style={{ backgroundColor: "rgba(255, 255, 255, 0.8)" }}
-    >
-      <CardHeader>
-        <p className="font-semibold text-xl text-black">{name}</p>
-      </CardHeader>
-      <CardContent>
-        <p className="text-base text-black/70">{description}</p>
-      </CardContent>
-      <CardFooter className="flex-wrap">
+    <div className="card-glass transition-shadow hover:shadow-xl p-5 flex flex-col gap-3">
+      <p className="font-semibold text-lg card-fg">{name}</p>
+      <p className="text-sm card-fg-muted leading-relaxed">{description}</p>
+      <div className="flex flex-wrap gap-2 mt-auto">
         <div className="flex items-center gap-2 mb-3">
           {tools.map((Tool: IconType) => (
-            <Tool key={Tool.name} className="text-2xl text-gray-700" />
+            <Tool key={Tool.name} className="text-xl" style={{ color: "var(--card-fg-muted)" }} />
           ))}
         </div>
         <NextLink href={projectsUrl} className="no-underline">
-          <Button size="sm" className="bg-primary text-white">
+          <button className="navbar-btn-outline">
             Projects
-          </Button>
+          </button>
         </NextLink>
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   );
 }
